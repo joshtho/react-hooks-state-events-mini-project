@@ -1,6 +1,6 @@
 import React from "react";
 
-function CategoryFilter({categories, handleClick, filter }) {
+function CategoryFilter({categories, setFilter, filter }) {
 
   return (
     <div className="categories">
@@ -9,7 +9,7 @@ function CategoryFilter({categories, handleClick, filter }) {
         return <button 
         key={category} 
         className={category === filter ? "selected" : "button"} 
-        onClick={handleClick}
+        onClick={() => setFilter(category)}
         >
           {category}
         </button>

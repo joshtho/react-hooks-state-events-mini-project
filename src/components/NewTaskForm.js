@@ -2,38 +2,36 @@ import React, { useState } from "react";
 
 
 function NewTaskForm({categories, onTaskFormSubmit}) {
-  const [textInput, setTextInput] = useState("")
-  const [categoryInput, setCategoryInput] = useState("Code")
+  const [text, setText] = useState("")
+  const [category, setCategory] = useState("Code")
   
-  const filterCategories = categories.filter(cat => cat !== "All") 
-  const renderOptions = () => {
-    return filterCategories.map(category => {
-      return <option key={category}>{category}</option>
-    })
-  }
+  // const filterCategories = categories.filter(cat => cat !== "All") 
+  // const renderOptions = () => {
+  //   return filterCategories.map(category => {
+  //     return <option key={category}>{category}</option>
+  //   })
+  // }
   
-  function handleChange(event) {
-    if(event.target.name === 'text'){
-      setTextInput(event.target.value)
-    } else {
-      setCategoryInput(event.target.value)
-    }
-
-  }
+  
   function handleSubmit(e) {
     e.preventDefault();
-    onTaskFormSubmit(textInput, categoryInput)
+    onTaskFormSubmit({text, category})
+    setText('')
+    setCategory("Code")
   }
+  
   return (
     <form onSubmit={handleSubmit} className="new-task-form">
       <label>
         Details
-        <input type="text" name="text" value={textInput} onChange={handleChange} />
+        <input type="text" name="text" value={text} onChange={(e) => setText(e.target.value)} />
       </label>
       <label>
         Category
-        <select name="category" onChange={handleChange} value={categoryInput} >
-          {renderOptions()}
+        <select name="category" onChange={(e) => setCategory(e.target.value)} value={category} >
+          {categories.map((cat) => {
+            return <option key={cat}>{cat}</option>
+          })}
         </select>
       </label>
       <input type="submit" value="Add task" />
