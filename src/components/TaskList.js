@@ -12,7 +12,8 @@ function TaskList({tasks, handleDelete}) {
        return <Task 
        key={index} 
        handleDelete={handleDelete}
-       task={task}
+       text={task.text}
+       category={task.category}
        />
       })}
     </div>

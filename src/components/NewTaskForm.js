@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 function NewTaskForm({categories, onTaskFormSubmit}) {
   const [textInput, setTextInput] = useState("")
-  const [categoryInput, setCategoryInput] = useState()
+  const [categoryInput, setCategoryInput] = useState("Code")
   
   const filterCategories = categories.filter(cat => cat !== "All") 
   const renderOptions = () => {
